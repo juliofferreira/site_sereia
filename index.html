@@ -897,10 +897,11 @@
       background: transparent;
     }
 
-    body {
-      webkit-tap-highlight-color: #fed136;
-    }
-
+    /*
+      body {
+        webkit-tap-highlight-color: #fed136;
+      }
+*/
     #call-me-baby {
       position: fixed;
       bottom: 20px;
@@ -2377,99 +2378,58 @@
       });
     }, 5000);
 
-    //Evento de Scroll Até o Final da Página
-    document.addEventListener('scroll', function () {
+    // exercicio 1
+    document.addEventListener('scroll', function (event) {
       var alturaAtual = Math.round(window.scrollY + document.documentElement.clientHeight);
       var alturaTotal = Math.max(
         document.body.scrollHeight, document.documentElement.scrollHeight,
         document.body.offsetHeight, document.documentElement.offsetHeight,
         document.body.clientHeight, document.documentElement.clientHeight
       );
-      if (alturaAtual == alturaTotal) { console.log('>>> Rolou até o final') }
-
+      if (alturaAtual == alturaTotal) { console.log('>>> Fim da Página') }
     });
-
-    // Evento de Click em Faça um Orçamento
-    var track = document.querySelector('a.page-scroll.btn.btn-xl');
-    track.addEventListener('click', function () {
-      console.log('>>> Clicou em FAÇA UM ORÇAMENTO')
-    })
-
-    // Evento de IntersectionObserver no popup de Fale com o atendente
-    var callMeBaby = document.getElementById('call-me-baby');
-    const intersectionObserver = new IntersectionObserver((entries) => {
-
-      if (entries[0].isIntersecting) {
+    //execicio 2
+    var tender = document.querySelector('a.page-scroll.btn.btn-xl')
+    tender.addEventListener('click', function () {
+      console.log('Clicou em FAÇA UM ORÇAMENTO')
+    });
+    //Exercício 3
+    var Observer = new IntersectionObserver(function (entries) {
+      if (entries[0].isIntersecting == true) {
         console.log('Visualizou FALE COM UM ATENDENTE');
       }
-
-
     });
-    // start observing
-    intersectionObserver.observe(callMeBaby);
-
-    // Evento de Verificação de Change nos campos de Input do Fomulário
-    var nome = document.getElementById('name');
-    var email = document.getElementById('email');
-    var phone = document.getElementById('phone');
-    var address = document.getElementById('address');
-    var message = document.getElementById('message');
-
-    nome.addEventListener('change', function () {
-      console.log("Alterou campo Nome");
-    });
-    email.addEventListener('change', function (e) {
-      var target = e.target;
-      if (target.getAttribute('aria-invalid') == 'false') { console.log("Alterou campo email") };
-    });
-    phone.addEventListener('change', function () {
-      console.log("Alterou campo Telefone");
-    });
-    address.addEventListener('change', function () {
-      console.log("Alterou campo Endereço");
-    });
-    message.addEventListener('change', function () {
-      console.log("Alterou campo Mensagem");
-    });
-
-    // Evento Preenchimento de Todo Formulário
-    var campForm = document.querySelector('form#contactForm');
-
-    campForm.addEventListener('change', function (e) {
-      var target = e.target;
-      var campo = target.getAttribute('id');
-
-      if (target.getAttribute('aria-invalid') != "true") {
-        target.preenchido = 'true';
+    Observer.observe(document.querySelector('#call-me-baby'))
+    // Exercicio 4 // Exercicio 5
+    var form = document.getElementById('contactForm');
+    form.addEventListener('change', function (ev) {
+      var inputTarget = ev.target;
+      var inputName = inputTarget.getAttribute('id');
+      //validação email
+      if (!inputTarget.preenchido && inputTarget.getAttribute('aria-invalid') !== 'true') {
+        console.log('Preencheu campo' + inputName);
+        inputTarget.preenchido = true;
       }
-
-      var campos = ['name', 'email', 'phone', 'address', 'message'];
-      if (campos.every(function (campo) {
-        return document.getElementById(campo).preenchido;
-      })) {
-        console.log('preencheu todo formulário');
+      var todosPreenchidos = ['email', 'name', 'phone', 'message', 'address'].every(function (inputId) {
+        return document.getElementById(inputId).preenchido;
+      });
+      if (!todosPreenchidos && todosPreenchidos) {
+        console.log('Preemcheu todo o formulário');
       }
-
+    });
+    //execicio 6
+    var menuArea = document.querySelector('ul.nav.navbar-nav.navbar-right');
+    menuArea.addEventListener('click', function (e) {
+      console.log('Clicou no menu', e.target.innerText);// mostrar em qual dos menus que se clicar.
     });
 
-    //Evento Click no Menu
-    var menu = document.querySelector('ul.nav.navbar-nav.navbar-right');
-    menu.addEventListener('click', function (e) {
-      console.log('Clicou no menu', e.target.innerText);
-    });
-
-    //Visualização Banheiro
-    var banheiro = document.querySelector('img.img-circle.img-responsive');
-    const intersectionObserver2 = new IntersectionObserver((entries) => {
-      if (entries[0].isIntersecting) {
+    // Exercicio 7
+    var banheiroObserver = new IntersectionObserver(function (entries) {
+      if (entries[0].isIntersecting == true) {
         console.log('Visualizou o banheiro');
-        intersectionObserver2.disconnect();
       }
-    });
-    intersectionObserver2.observe(banheiro);
-
-
-
+    })
+    banheiroObserver.observe(document.querySelector('#about > div > div:nth-child(2) > div > ul > li:nth-child(1) > div.timeline-image > img'))
   </script>
 </body>
 
