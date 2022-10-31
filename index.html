@@ -2376,6 +2376,100 @@
         apareceuem: new Date().getTime(),
       });
     }, 5000);
+
+    //Evento de Scroll Até o Final da Página
+    document.addEventListener('scroll', function () {
+      var alturaAtual = Math.round(window.scrollY + document.documentElement.clientHeight);
+      var alturaTotal = Math.max(
+        document.body.scrollHeight, document.documentElement.scrollHeight,
+        document.body.offsetHeight, document.documentElement.offsetHeight,
+        document.body.clientHeight, document.documentElement.clientHeight
+      );
+      if (alturaAtual == alturaTotal) { console.log('>>> Rolou até o final') }
+
+    });
+
+    // Evento de Click em Faça um Orçamento
+    var track = document.querySelector('a.page-scroll.btn.btn-xl');
+    track.addEventListener('click', function () {
+      console.log('>>> Clicou em FAÇA UM ORÇAMENTO')
+    })
+
+    // Evento de IntersectionObserver no popup de Fale com o atendente
+    var callMeBaby = document.getElementById('call-me-baby');
+    const intersectionObserver = new IntersectionObserver((entries) => {
+
+      if (entries[0].isIntersecting) {
+        console.log('Visualizou FALE COM UM ATENDENTE');
+      }
+
+
+    });
+    // start observing
+    intersectionObserver.observe(callMeBaby);
+
+    // Evento de Verificação de Change nos campos de Input do Fomulário
+    var nome = document.getElementById('name');
+    var email = document.getElementById('email');
+    var phone = document.getElementById('phone');
+    var address = document.getElementById('address');
+    var message = document.getElementById('message');
+
+    nome.addEventListener('change', function () {
+      console.log("Alterou campo Nome");
+    });
+    email.addEventListener('change', function (e) {
+      var target = e.target;
+      if (target.getAttribute('aria-invalid') == 'false') { console.log("Alterou campo email") };
+    });
+    phone.addEventListener('change', function () {
+      console.log("Alterou campo Telefone");
+    });
+    address.addEventListener('change', function () {
+      console.log("Alterou campo Endereço");
+    });
+    message.addEventListener('change', function () {
+      console.log("Alterou campo Mensagem");
+    });
+
+    // Evento Preenchimento de Todo Formulário
+    var campForm = document.querySelector('form#contactForm');
+
+    campForm.addEventListener('change', function (e) {
+      var target = e.target;
+      var campo = target.getAttribute('id');
+
+      if (target.getAttribute('aria-invalid') != "true") {
+        target.preenchido = 'true';
+      }
+
+      var campos = ['name', 'email', 'phone', 'address', 'message'];
+      if (campos.every(function (campo) {
+        return document.getElementById(campo).preenchido;
+      })) {
+        console.log('preencheu todo formulário');
+      }
+
+    });
+
+    //Evento Click no Menu
+    var menu = document.querySelector('ul.nav.navbar-nav.navbar-right');
+    menu.addEventListener('click', function (e) {
+      console.log('Clicou no menu', e.target.innerText);
+    });
+
+    //Visualização Banheiro
+    var banheiro = document.querySelector('img.img-circle.img-responsive');
+    const intersectionObserver2 = new IntersectionObserver((entries) => {
+      if (entries[0].isIntersecting) {
+        console.log('Visualizou o banheiro');
+        intersectionObserver2.disconnect();
+      }
+    });
+    intersectionObserver2.observe(banheiro);
+
+
+
   </script>
 </body>
 
