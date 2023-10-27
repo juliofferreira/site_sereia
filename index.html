@@ -1,6 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
 	<head>
+		<!-- Google tag (gtag.js) -->
+		<script
+			async
+			src="https://www.googletagmanager.com/gtag/js?id=G-PZTMHF2NK7"
+		></script>
+		<script>
+			window.dataLayer = window.dataLayer || [];
+			function gtag() {
+				dataLayer.push(arguments);
+			}
+			gtag('js', new Date());
+
+			gtag('config', 'G-PZTMHF2NK7');
+		</script>
+
 		<meta charset="utf-8" />
 		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -988,7 +1003,7 @@
 					<a
 						class="navbar-brand page-scroll"
 						href="#page-top"
-						data-click="no menu Sereia Software"
+						data-click-menu="no menu Sereia Software"
 						>Sereia Software</a
 					>
 				</div>
@@ -1003,7 +1018,7 @@
 							<a
 								class="page-scroll"
 								href="#services"
-								data-click="no menu Serviços"
+								data-click-menu="no menu Serviços"
 								>Serviços</a
 							>
 						</li>
@@ -1011,17 +1026,20 @@
 							<a
 								class="page-scroll"
 								href="#portfolio"
-								data-click="no menu Portifólio"
+								data-click-menu="no menu Portifólio"
 								>Portifólio</a
 							>
 						</li>
 						<li>
-							<a class="page-scroll" href="#about" data-click="no menu Sobre"
+							<a
+								class="page-scroll"
+								href="#about"
+								data-click-menu="no menu Sobre"
 								>Sobre</a
 							>
 						</li>
 						<li>
-							<a class="page-scroll" href="#team" data-click="no menu Time"
+							<a class="page-scroll" href="#team" data-click-menu="no menu Time"
 								>Time</a
 							>
 						</li>
@@ -1029,7 +1047,7 @@
 							<a
 								class="page-scroll"
 								href="#contact"
-								data-click="no menu Contato"
+								data-click-menu="no menu Contato"
 								>Contato</a
 							>
 						</li>
@@ -1310,17 +1328,21 @@
 							<p class="text-muted">Engenheiro de Frontend</p>
 							<ul class="list-inline social-buttons">
 								<li>
-									<a href="https://twitter.com/"
+									<a href="https://twitter.com/" data-social-media="dev twitter"
 										><i class="fa fa-twitter"></i
 									></a>
 								</li>
 								<li>
-									<a href="https://www.facebook.com/"
+									<a
+										href="https://www.facebook.com/"
+										data-social-media="dev facebook"
 										><i class="fa fa-facebook"></i
 									></a>
 								</li>
 								<li>
-									<a href="https://www.linkedin.com/"
+									<a
+										href="https://www.linkedin.com/"
+										data-social-media="dev linkedin"
 										><i class="fa fa-linkedin"></i
 									></a>
 								</li>
@@ -1340,17 +1362,21 @@
 							<p class="text-muted">Modelo Fotográfico</p>
 							<ul class="list-inline social-buttons">
 								<li>
-									<a href="https://twitter.com/"
+									<a href="https://twitter.com/" data-social-media="dev twitter"
 										><i class="fa fa-twitter"></i
 									></a>
 								</li>
 								<li>
-									<a href="https://www.facebook.com/"
+									<a
+										href="https://www.facebook.com/"
+										data-social-media="dev facebook"
 										><i class="fa fa-facebook"></i
 									></a>
 								</li>
 								<li>
-									<a href="https://www.linkedin.com/"
+									<a
+										href="https://www.linkedin.com/"
+										data-social-media="dev linkedin"
 										><i class="fa fa-linkedin"></i
 									></a>
 								</li>
@@ -1370,17 +1396,21 @@
 							<p class="text-muted">Enfermeira de Pokemons</p>
 							<ul class="list-inline social-buttons">
 								<li>
-									<a href="https://twitter.com/"
+									<a href="https://twitter.com/" data-social-media="dev twitter"
 										><i class="fa fa-twitter"></i
 									></a>
 								</li>
 								<li>
-									<a href="https://www.facebook.com/"
+									<a
+										href="https://www.facebook.com/"
+										data-social-media="dev facebook"
 										><i class="fa fa-facebook"></i
 									></a>
 								</li>
 								<li>
-									<a href="https://www.linkedin.com/"
+									<a
+										href="https://www.linkedin.com/"
+										data-social-media="dev linkedin"
 										><i class="fa fa-linkedin"></i
 									></a>
 								</li>
@@ -1505,15 +1535,21 @@
 					<div class="col-md-4">
 						<ul class="list-inline social-buttons">
 							<li>
-								<a href="https://twitter.com/"><i class="fa fa-twitter"></i></a>
+								<a href="https://twitter.com/" data-social-media="site twitter"
+									><i class="fa fa-twitter"></i
+								></a>
 							</li>
 							<li>
-								<a href="https://www.facebook.com/"
+								<a
+									href="https://www.facebook.com/"
+									data-social-media="site facebook"
 									><i class="fa fa-facebook"></i
 								></a>
 							</li>
 							<li>
-								<a href="https://www.linkedin.com/"
+								<a
+									href="https://www.linkedin.com/"
+									data-social-media="site linkedin"
 									><i class="fa fa-linkedin"></i
 								></a>
 							</li>
@@ -2657,6 +2693,7 @@
 					preventSubmit: true,
 					submitError: function ($form, event, errors) {
 						// additional error messages or events
+						gtag('event', 'form_submit', { status: 'error' });
 					},
 					submitSuccess: function ($form, event) {
 						event.preventDefault(); // prevent default submit behaviour
@@ -2686,6 +2723,7 @@
 							cache: false,
 							success: function () {
 								// Success message
+								gtag('event', 'form_submit', { status: 'success' });
 								$('#success').html("<div class='alert alert-success'>");
 								$('#success > .alert-success')
 									.html(
@@ -2702,6 +2740,7 @@
 							},
 							error: function () {
 								// Fail message
+								gtag('event', 'form_submit', { status: 'error' });
 								$('#success').html("<div class='alert alert-danger'>");
 								$('#success > .alert-danger')
 									.html(
@@ -2775,6 +2814,7 @@
 			})(jQuery); // End of use strict
 
 			window.setTimeout(function () {
+				gtag('event', 'phone_popup_view');
 				var element = document.getElementById('call-me-baby');
 				element.style.right = '20px';
 
@@ -2786,7 +2826,6 @@
 			}, 5000);
 		</script>
 		<script>
-			// 1
 			document.addEventListener('scroll', () => {
 				const documentHeight = Math.round(document.body.scrollHeight);
 				const currentScrollHeight = Math.round(
@@ -2794,17 +2833,26 @@
 				);
 				if (currentScrollHeight >= documentHeight) {
 					console.log('Rolou até o final');
+					gtag('event', 'full_scroll');
 				}
 			});
 
-			// 2 & 6
-			document.querySelectorAll('[data-click]').forEach((element) => {
+			const menuElements = document.querySelectorAll('[data-click-menu]');
+			const clickElements = document.querySelectorAll('[data-click]');
+			const clickLogs = [...menuElements, ...clickElements];
+			clickLogs.forEach((element) => {
 				element.addEventListener('click', (event) => {
-					console.log(`Clicou ${event.target.dataset.click}`);
+					if (event.target.dataset.clickMenu) {
+						gtag('event', 'menu_click');
+					}
+					console.log(
+						`Clicou ${
+							event.target.dataset.click ?? event.target.dataset.clickMenu
+						}`
+					);
 				});
 			});
 
-			// 3 & 7
 			const visualizationElements = document.querySelectorAll(
 				'[data-visualization]'
 			);
@@ -2821,7 +2869,6 @@
 				observer.observe(visualizationElement);
 			});
 
-			// 4 & 5
 			const form = document.querySelector('[data-form]');
 			const formInputs = document.querySelectorAll('[data-form-input]');
 			const formInputsArray = Array.from(formInputs);
@@ -2836,6 +2883,36 @@
 					console.log('Preencheu todo o formulário');
 				}
 			});
+
+			const observerForm = new IntersectionObserver(([entry]) => {
+				if (entry.isIntersecting) {
+					gtag('event', 'form_view');
+				}
+			});
+			observerForm.observe(form);
+
+			setTimeout(() => gtag('event', 'one_minute'), 60000);
+
+			const socialMediaButtons = document.querySelectorAll(
+				'[data-social-media]'
+			);
+			socialMediaButtons.forEach((socialMediaButton) => {
+				socialMediaButton.addEventListener('click', () => {
+					gtag('event', 'social_media_click', {
+						media: socialMediaButton.dataset.socialMedia.split(' ')[1],
+						type: socialMediaButton.dataset.socialMedia.split(' ')[0],
+					});
+				});
+			});
+
+			form.addEventListener(
+				'input',
+				(event) =>
+					gtag('event', 'form_start', {
+						label: event.target.dataset.formInput,
+					}),
+				{ once: true }
+			);
 		</script>
 	</body>
 </html>
